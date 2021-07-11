@@ -5,7 +5,7 @@ from constants import RANKS, SUITS
 
 class GenerateCardDeck:
     """
-    Generates deck of cards using rank and suits.
+    Generates deck of cards using ranks and suits.
     Deck of cards are shuffled to produce a randomized set
     """
 

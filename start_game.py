@@ -45,7 +45,7 @@ def cards_equal(player1, player2, total_cards):
         player1_face_down_cards = player1.war_cards()
 
         # To check if player 1 has returned any face down cards
-        if len(player1_face_down_cards) == 0:
+        if not player1_face_down_cards:
             transfer_cards(total_cards, player1, player2)
             # Player 1 has no sufficient cards, loses the game
             game_over = True
@@ -57,7 +57,7 @@ def cards_equal(player1, player2, total_cards):
         player2_face_down_cards = player2.war_cards()
 
         # To check if player 2 has returned any face down cards
-        if len(player2_face_down_cards) == 0:
+        if not player2_face_down_cards:
             transfer_cards(total_cards, player2, player1)
             # Player 2 has no sufficient cards, loses the game
             game_over = True
@@ -142,7 +142,7 @@ def play_game(card_deck):
         print("***********************************************************")
 
         # Game ends when either one of the players has no cards
-        if len(player1.cards) == 0 or len(player2.cards) == 0:
+        if not player1.cards or not player2.cards:
             game_over = True
         game_round += 1
 
