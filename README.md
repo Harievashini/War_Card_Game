@@ -10,11 +10,16 @@ The game continues until either one of the players wins all the cards.
 
 <h2><b> How to run? </b></h2>
 
+```python
 python3 start_game.py
+```
 
 <h2><b> How to test? </b></h2>
 
-test_CardDeck.py file contains sample decks which are used for testing.
-<br>test.py file includes all test conditions.
+- test_CardDeck.py file contains sample decks which are used for testing.
+- test.py file includes all test conditions.
 
-Run <b> python3 test.py </b>
+```python
+python3 test.py 
+```
+
