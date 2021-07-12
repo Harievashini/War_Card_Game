@@ -17,7 +17,7 @@ def transfer_cards(total_cards, loser, winner):
 
 def cards_not_equal(player, total_cards):
 
-    # The player that picked the highest open card, gets both the cards
+    # The player that placed the highest open card, gets both the cards
     print(
         "The highest card belongs to {}, {} gets the cards".format(
             player.name, player.name
@@ -41,7 +41,7 @@ def cards_equal(player1, player2, total_cards):
         print("Each player places three cards faced down\n")
         print("-------------------------------------------")
 
-        # Player 1 picks three cards faced down
+        # Player 1 places three cards faced down
         player1_face_down_cards = player1.war_cards()
 
         # To check if player 1 has returned any face down cards
@@ -51,9 +51,10 @@ def cards_equal(player1, player2, total_cards):
             game_over = True
             break
         else:
+            # The closed cards are added to the list of all cards on the table
             total_cards.extend(player1_face_down_cards)
 
-        # Player 2 picks three cards faced down
+        # Player 2 places three cards faced down
         player2_face_down_cards = player2.war_cards()
 
         # To check if player 2 has returned any face down cards
@@ -63,21 +64,24 @@ def cards_equal(player1, player2, total_cards):
             game_over = True
             break
         else:
+            # The closed cards are added to the list of all cards on the table
             total_cards.extend(player2_face_down_cards)
 
         print("\nNow each player picks one card and places it faced up\n")
-        # Both the players each pick an open card to determine who won the war
+        # Both the players each place an open card to determine who won the war
         player1_open_card = player1.draw_card()
         player2_open_card = player2.draw_card()
+
+        # The open cards are added to the list of all cards on the table
         total_cards.append(player1_open_card)
         total_cards.append(player2_open_card)
 
-        # Player 1 picked the highest card
+        # Player 1 placed the highest card
         if RANKS.index(player1_open_card[1]) > RANKS.index(player2_open_card[1]):
             cards_not_equal(player1, total_cards)
             war_begin = False
 
-        # Player 2 picked the highest card
+        # Player 2 placed the highest card
         elif RANKS.index(player1_open_card[1]) < RANKS.index(player2_open_card[1]):
             cards_not_equal(player2, total_cards)
             war_begin = False
@@ -116,19 +120,21 @@ def play_game(card_deck):
     while not game_over:
         total_cards = []  # cards on the table
 
+        # Both the players place a face-up card
         print("{} draws a card".format(player1.name))
         player1_open_card = player1.draw_card()
         print("{} draws a card".format(player2.name))
         player2_open_card = player2.draw_card()
 
+        # The first set of open cards are added to the list
         total_cards.append(player1_open_card)
         total_cards.append(player2_open_card)
 
-        # Player 1 picked the highest card
+        # Player 1 placed the highest card
         if RANKS.index(player1_open_card[1]) > RANKS.index(player2_open_card[1]):
             cards_not_equal(player1, total_cards)
 
-        # Player 2 picked the highest card
+        # Player 2 placed the highest card
         elif RANKS.index(player1_open_card[1]) < RANKS.index(player2_open_card[1]):
             cards_not_equal(player2, total_cards)
 
@@ -136,7 +142,9 @@ def play_game(card_deck):
         else:
             cards_equal(player1, player2, total_cards)
 
+        # Scores are displayed after every round
         print("\nScores after round {}:".format(game_round))
+        # The scores represent each player's remaining card
         print("{} scores {}".format(player1.name, len(player1.cards)))
         print("{} scores {}".format(player2.name, len(player2.cards)))
         print("***********************************************************")
